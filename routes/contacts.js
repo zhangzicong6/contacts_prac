@@ -15,6 +15,17 @@ router.get('/', function(req, res, next) {
   res.send(contacts);
 });
 
+/* get contact*/
+router.put('/:id', function(req, res, next) {
+	var id = req.param('id');
+	var contact = contact_objs[id];
+    if(!contact){
+    	res.status(404).send('not found ' +id+ '`s contact');
+    }else{
+    	res.send(contact);
+    }
+});
+
 /* create  contact */
 router.post('/', [
 		check('first_name').exists(),
